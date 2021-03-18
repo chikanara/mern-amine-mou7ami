@@ -1,8 +1,9 @@
-import { Button, Form } from "react-bootstrap";
+import { Button, Form , Alert} from "react-bootstrap";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../js/actions/userAction";
 import { Redirect } from "react-router";
+
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -16,11 +17,16 @@ const Register = () => {
       dispatch(register(newUser))
 
   }
-  const {isAuth,loading} = useSelector(state => state.userReducer)
+  const {isAuth,loading,errors} = useSelector(state => state.userReducer)
   
   
   return (
     <div className="col-md-7 mx-auto">
+        {errors.id === "register" && (
+        <Alert className="mt-3 mx-auto" variant="danger">
+          {errors.err[0].msg}
+        </Alert>
+      )}
       {
           loading ? <h1>Loading ...</h1> : isAuth ? <Redirect to="/profile"/> :
           <Form>

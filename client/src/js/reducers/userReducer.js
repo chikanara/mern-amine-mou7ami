@@ -5,7 +5,7 @@ const intialState = {
     loading:false,
     token:null,
     isAuth:null,
-    errors:null
+    errors:{}
 }
 const userReducer = (state=intialState,{type,payload}) => {
     switch (type) {

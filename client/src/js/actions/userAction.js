@@ -25,7 +25,8 @@ export const register = (newUser) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    dispatch({ type: REGISTER_FAIL, payload: error.response.data });
+    dispatch({ type: REGISTER_FAIL, payload: {err:error.response.data,id:"register"} });
+    // alert(error.response.data[0].msg)
   }
 };
 
@@ -42,7 +43,8 @@ export const login = (user) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    dispatch({ type: LOGIN_FAIL, payload: error.response.data });
+    dispatch({ type: LOGIN_FAIL, payload: {err:error.response.data,id:"login"} });
+    // alert(error.response.data[0].msg)
   }
 };
 

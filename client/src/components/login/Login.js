@@ -1,4 +1,4 @@
-import { Button, Form } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,8 +15,14 @@ const Login = () => {
   }
   const isAuth = useSelector(state => state.userReducer.isAuth)
   const loading = useSelector(state => state.userReducer.loading)
+  const errors = useSelector(state => state.userReducer.errors)
   return (
     <div className="col-md-7 mx-auto">
+        {errors.id === "login" && (
+        <Alert className="mt-3 mx-auto" variant="danger">
+          {errors.err[0].msg}
+        </Alert>
+      )}
      {
          loading ? <h1>Loding ...</h1> : isAuth ? <Redirect to="/profile"/>:
          <Form>
